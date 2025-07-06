@@ -1,6 +1,9 @@
 import random
 from strawberry_game import strawberry_game
 from three69_game import game_369
+from korean_game import korean_game
+from market_game import market_game
+from subway_game import subway_game
 
 
 class Person:
@@ -22,7 +25,7 @@ class Person:
         return self.count
 
     def __str__(self):
-        return f"이름: {self.name}, 주량: {self.life}잔"  # 자바의 toString 오버라이딩과 비슷
+        return f"이름: {self.name}, 주량: {self.life}잔"
 
 
 people_list = [
@@ -119,7 +122,7 @@ def play_game(player, game_people_list):
         print("                 🍺 2. 지하철 게임 ")
         print("                 🍺 3. 딸기 게임 ")
         print("                 🍺 4. 시장 게임 ")
-        print("                 🍺 5. 두부 게임 ")
+        print("                 🍺 5. 훈민정음 게임 ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
         user_input = input(
@@ -147,15 +150,15 @@ def play_game(player, game_people_list):
                 case "1":
                     game_369(current_player,game_people_list)
                 case "2":
-                    subway_game()
+                    subway_game(game_people_list)
                     break
                 case "3":
                     strawberry_game(current_player,game_people_list)
                 case "4":
-                    market_game()
+                    market_game(game_people_list)
                     break
                 case "5":
-                    tofu_game()
+                    korean_game(player, game_people_list) #tofu_game에서 korean_game으로 수정. 함수 파라미터 추가
                     break
                 case _:
                     print("올바른 게임 번호를 골라주세요!")
@@ -163,7 +166,6 @@ def play_game(player, game_people_list):
             print(e)
 
         turn += 1
-
 
 # 메인 루프
 while True:
@@ -182,8 +184,3 @@ while True:
                 raise ValueError("잘못된 입력입니다. y 또는 n을 입력하세요.")
     except ValueError as e:
         print(e)
-
-
-
-
-
