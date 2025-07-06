@@ -1,5 +1,6 @@
 import random
 from strawberry_game import strawberry_game
+from three69_game import game_369
 
 
 class Person:
@@ -144,8 +145,7 @@ def play_game(player, game_people_list):
             ).strip()
             match choice:
                 case "1":
-                    game_369()
-                    break
+                    game_369(current_player,game_people_list)
                 case "2":
                     subway_game()
                     break
