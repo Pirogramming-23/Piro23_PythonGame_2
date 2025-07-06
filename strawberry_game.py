@@ -25,7 +25,10 @@ def print_rhythm(pattern):
     print()
 
 def strawberry_game(current_player,game_people_list):
-    print(f"\n{current_player.get_name()} 님의 딸기 게임 시작!!\n")
+    print(f"딸기 게임을 시작합니다!!")
+    # 룰 소개
+    # 인트로
+    print("딸기가 좋아~ 딸기가 좋아~ 딸기! 딸기! 딸기!딸기!딸기\n")
     # 패턴 설정
     patterns = strawberry_pattern()
     pattern_count = 0
@@ -34,11 +37,11 @@ def strawberry_game(current_player,game_people_list):
     while True: 
         current_player = game_people_list[player_index%len(game_people_list)]
         pattern = patterns[pattern_count%8]
-        user_input = input(f"{current_player.get_name()}님 차례!! 정확한 박자에 딸기를 입력해주세요 (X[묵음] 또는 딸기): ").replace(" ","").lower()
+        user_input = input(f"{current_player.get_name()}님 차례!! 정확한 박자에 딸기를 입력해주세요 (예: 1번 - X X X 딸기): ").replace(" ","").lower()
         pattern = ''.join(pattern).lower()
         if user_input != pattern:
-            print("\n 틀렸습니다 ㅠㅠ. 정답은: ")
-            print_rhythm(pattern)
+            print("틀렸습니다 ㅠㅠ. 정답은: ",end="")
+            print_rhythm(pattern.upper())
             print(f"{current_player.get_name()} 님은 하나 더 마신다!")
             current_player.set_count(current_player.get_count() + 1)
             current_player.life -= 1
