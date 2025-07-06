@@ -1,4 +1,5 @@
 import random
+from strawberry_game import strawberry_game
 
 
 class Person:
@@ -30,7 +31,7 @@ people_list = [
     Person("연서", 4),
 ]
 
-
+        
 def init_setting():
     print("게임을 시작합니다!")
     try:
@@ -149,8 +150,7 @@ def play_game(player, game_people_list):
                     subway_game()
                     break
                 case "3":
-                    strawberry_game()
-                    break
+                    strawberry_game(current_player,game_people_list)
                 case "4":
                     market_game()
                     break
@@ -182,3 +182,8 @@ while True:
                 raise ValueError("잘못된 입력입니다. y 또는 n을 입력하세요.")
     except ValueError as e:
         print(e)
+
+
+
+
+
