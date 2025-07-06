@@ -1,6 +1,7 @@
 import random
 from korean_game import korean_game
 from market_game import market_game
+from subway_game import subway_game
 
 class Person:
     def __init__(self, name, life):
@@ -147,7 +148,7 @@ def play_game(player, game_people_list):
                     game_369()
                     break
                 case "2":
-                    subway_game()
+                    subway_game(game_people_list)
                     break
                 case "3":
                     strawberry_game()
