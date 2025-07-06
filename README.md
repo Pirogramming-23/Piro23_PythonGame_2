@@ -16,7 +16,7 @@ Person("연서",4)
 # 각 게임 함수 이름, 매개변수는 스스로 정하고 커밋 후 푸쉬
 
 369게임 함수: game_369()
-두부 함수: tofu_game()
+훈민정음 함수: korean_game()
 지하철 함수: subway_game()
 시장 함수: market_game()
 딸기 함수: strawberry_game()
