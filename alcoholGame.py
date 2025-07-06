@@ -1,7 +1,10 @@
 import random
+from strawberry_game import strawberry_game
+from three69_game import game_369
 from korean_game import korean_game
 from market_game import market_game
 from subway_game import subway_game
+
 
 class Person:
     def __init__(self, name, life):
@@ -32,7 +35,7 @@ people_list = [
     Person("연서", 4),
 ]
 
-
+        
 def init_setting():
     print("게임을 시작합니다!")
     try:
@@ -145,14 +148,12 @@ def play_game(player, game_people_list):
             ).strip()
             match choice:
                 case "1":
-                    game_369()
-                    break
+                    game_369(current_player,game_people_list)
                 case "2":
                     subway_game(game_people_list)
                     break
                 case "3":
-                    strawberry_game()
-                    break
+                    strawberry_game(current_player,game_people_list)
                 case "4":
                     market_game(game_people_list)
                     break
