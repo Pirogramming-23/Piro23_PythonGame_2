@@ -48,7 +48,7 @@ def game_369(player, current_player, game_people_list):
             print(f"X 틀렸습니다 ㅠㅠ. 정답은: {correct_answer}")
             print(f"{current_player.get_name()} 님이 마신다!~~!!\n")
             current_player.set_count(current_player.get_count() + 1)
-            current_player.life -= 1
+            current_player.decrease_life()
             break
         else:
             print(f"{current_player.get_name()} 정답!")

@@ -26,6 +26,13 @@ class Person:
 
     def __str__(self):
         return f"이름: {self.name}, 주량: {self.life}잔"
+    
+    def decrease_life(self):
+        if self.life > 0:
+            self.life -= 1
+
+    def is_alive(self):
+        return self.life > 0
 
 
 people_list = [
@@ -124,7 +131,15 @@ def play_game(player, game_people_list):
     turn = 0
     while True:
         current_player = game_people_list[turn % len(game_people_list)]
-
+        if current_player.get_life() <= 0:
+            print("GAME OVER!")
+            print(
+                f"{current_player.get_name()}이 (가) 전사했습니다...꿈나라에서는 편히 쉬시길...zzz"
+            )
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print("                 🍺 다음에 술마시면 또 불러주세요~안녕! 🍺")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            break
         for person in game_people_list:
             print(
                 f"{person.get_name()}은 (는) 지금까지 {person.get_count()}🍺 : 치사량까지 {person.get_life()}"
@@ -138,16 +153,6 @@ def play_game(player, game_people_list):
         print("                 🍺 4. 시장 게임 ")
         print("                 🍺 5. 훈민정음 게임 ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-
-        if current_player.get_life() <= 0:
-            print("GAME OVER!")
-            print(
-                f"{current_player.get_name()}이 (가) 전사했습니다...꿈나라에서는 편히 쉬시길...zzz"
-            )
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print("                 🍺 다음에 술마시면 또 불러주세요~안녕! 🍺")
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            break
         
         user_input = input(
             f"\n술게임 진행 중! {current_player.get_name()}님의 턴입니다.\n그만하고 싶으면 'exit'을, 계속하려면 Enter를 눌러주세요: "
@@ -174,6 +179,15 @@ def play_game(player, game_people_list):
                     korean_game(player, game_people_list) #tofu_game에서 korean_game으로 수정. 함수 파라미터 추가
                 case _:
                     print("올바른 게임 번호를 골라주세요!")
+            if current_player.get_life() <= 0:
+                print("GAME OVER!")
+                print(
+                    f"{current_player.get_name()}이 (가) 전사했습니다...꿈나라에서는 편히 쉬시길...zzz"
+                )
+                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                print("                 🍺 다음에 술마시면 또 불러주세요~안녕! 🍺")
+                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                break
         except Exception as e:
             print(e)
 
