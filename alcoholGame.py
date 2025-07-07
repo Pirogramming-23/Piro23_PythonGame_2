@@ -163,13 +163,11 @@ def play_game(player, game_people_list):
             match choice:
                 case "1":
                     game_369(player,current_player,game_people_list)
-                    break
                 case "2":
                     subway_game(game_people_list)
                     break
                 case "3":
                     strawberry_game(player,current_player,game_people_list)
-                    break
                 case "4":
                     market_game(game_people_list)
                     break

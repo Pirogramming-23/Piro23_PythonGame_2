@@ -16,20 +16,21 @@ def three69_pattern():
         else:
             patterns.append(str(num))
     return patterns
+        
 
-def game_369(player,current_player,game_people_list):
+def game_369(player, current_player, game_people_list):
     print(f"3 6 9 게임을 시작합니다!!")
-    # 인트로
     print("3 6 9!! 3 6 9!! 3 6 9!! 3 6 9!! \n")
-    # 패턴 설정
+
     patterns = three69_pattern()
     player_index = game_people_list.index(current_player)
-    
-    for i in range(100):
-        current_player = game_people_list[player_index % len(game_people_list)]
-        correct_answer = patterns[i]
+    current_num = 1  # 시작 숫자
 
-        # 실제 사용자면 input, 아니면 90% 확률로 정답 자동 생성
+    while True:
+        current_player = game_people_list[player_index % len(game_people_list)]
+        correct_answer = patterns[current_num - 1]  # 0-based index
+
+        # 유저/AI 구분
         if current_player == player:
             user_input = input(f">> {current_player.get_name()}님 차례: ").strip()
         else:
@@ -37,20 +38,35 @@ def game_369(player,current_player,game_people_list):
             if is_correct:
                 user_input = correct_answer
             else:
-                user_input = str(i + 1) if correct_answer != str(i + 1) else "짝"
+                user_input = str(current_num) if correct_answer != str(current_num) else "짝"
             print(f">> {current_player.get_name()}님 차례: {user_input}")
             time.sleep(1)
 
         # 정답 체크
         if user_input != correct_answer:
-            print(f" X 틀렸습니다 ㅠㅠ. 정답은: {correct_answer}")
+            print(f"X 틀렸습니다 ㅠㅠ. 정답은: {correct_answer}")
             print(f"{current_player.get_name()} 님은 하나 더 마신다!\n")
             current_player.set_count(current_player.get_count() + 1)
             current_player.life -= 1
-            break
+
+            # 게임 계속할지 묻기
+            cont = input("3 6 9 게임을 다시 처음부터 진행할까요? (y/n): ").strip().lower()
+            if cont == "y":
+                print("\n게임을 처음부터 다시 시작합니다!\n")
+                current_num = 1
+                player_index = game_people_list.index(current_player) + 1  # 틀린 다음 사람부터 시작
+                continue
+            else:
+                print("🍺 3 6 9 게임 종료!")
+                break
         else:
             print(f"{current_player.get_name()} 정답!\n")
+
+        current_num += 1
         player_index += 1
+
+
+
 
 
 

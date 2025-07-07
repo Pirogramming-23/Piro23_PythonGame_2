@@ -25,34 +25,14 @@ def print_rhythm(pattern):
         time.sleep(0.3)
     print()
 
-def strawberry_game(player,current_player,game_people_list):
+def strawberry_game(player, current_player, game_people_list):
     print(f"딸기 게임을 시작합니다!!")
-    # 룰 소개
-    # 인트로
     print("딸기가 좋아~ 딸기가 좋아~ 딸기! 딸기! 딸기!딸기!딸기\n")
-    # 패턴 설정
+
     patterns = strawberry_pattern()
     pattern_count = 0
     player_index = game_people_list.index(current_player)
 
-    # while True: 
-    #     current_player = game_people_list[player_index%len(game_people_list)]
-    #     pattern = patterns[pattern_count%8]
-    #     user_input = input(f"{current_player.get_name()}님 차례!! 정확한 박자에 딸기를 입력해주세요 (예: 1번 - X X X 딸기): ").replace(" ","").lower()
-    #     pattern = ''.join(pattern).lower()
-    #     if user_input != pattern:
-    #         print("틀렸습니다 ㅠㅠ. 정답은: ",end="")
-    #         print_rhythm(pattern.upper())
-    #         print(f"{current_player.get_name()} 님은 하나 더 마신다!")
-    #         current_player.set_count(current_player.get_count() + 1)
-    #         current_player.life -= 1
-    #         break
-    #     else:
-    #         print("잘했습니다! 이어서 다음으로...")
-
-    #     pattern_count += 1
-    #     player_index+=1
-    
     while True:
         current_player = game_people_list[player_index % len(game_people_list)]
         pattern = patterns[pattern_count % 8]
@@ -65,7 +45,7 @@ def strawberry_game(player,current_player,game_people_list):
             if is_correct:
                 user_input = expected
             else:
-                # 일부러 틀리기: 딸기 하나 제거 or X 하나 딸기로 바꾸기
+                # 일부러 틀리기
                 wrong_input = list(expected)
                 if "딸기" in wrong_input:
                     idx = wrong_input.index("딸기")
@@ -82,7 +62,17 @@ def strawberry_game(player,current_player,game_people_list):
             print(f"{current_player.get_name()} 님은 하나 더 마신다!")
             current_player.set_count(current_player.get_count() + 1)
             current_player.life -= 1
-            break
+
+            # 재시작 여부 확인
+            cont = input("딸기 게임을 처음부터 다시 할까요? (y/n): ").strip().lower()
+            if cont == "y":
+                print("\n게임을 처음부터 다시 시작합니다!\n")
+                pattern_count = 0
+                player_index = game_people_list.index(current_player) + 1  # 틀린 다음 사람부터 시작
+                continue
+            else:
+                print("🍺 딸기 게임 종료!")
+                break
         else:
             print(f"{current_player.get_name()} 정답!\n")
 
