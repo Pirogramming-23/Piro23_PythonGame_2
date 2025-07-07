@@ -26,7 +26,7 @@ def market_game(player, game_people_list):
             # AI가 말할 수 있는 단어 후보들
             ai_vocab = ["사과", "바나나", "귤", "수박", "딸기", "콩나물", "감자", "당근", "오이", "버섯"]
 
-            if random.random() < 0.8:
+            if random.random() < 0.7:
                 new_word = random.choice(ai_vocab)
                 ai_items = items + [new_word]
                 ai_phrase = "시장에 가면 " + "도 있고 ".join(ai_items) + "도 있고"
