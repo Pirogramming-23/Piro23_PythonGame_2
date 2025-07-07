@@ -26,8 +26,9 @@ def print_rhythm(pattern):
     print()
 
 def strawberry_game(player, current_player, game_people_list):
-    print(f"딸기 게임을 시작합니다!!")
-    print("딸기가 좋아~ 딸기가 좋아~ 딸기! 딸기! 딸기!딸기!딸기\n")
+    print("\n딸기 게임을 시작합니다!!")
+    print("딸기가 좋아~ 딸기가 좋아~ 딸기! 딸기! 딸기!딸기!딸기")
+    print("정확한 박자에 딸기를 입력해주세요 (예: 1번 - X X X 딸기)\n")
 
     patterns = strawberry_pattern()
     pattern_count = 0
@@ -39,7 +40,7 @@ def strawberry_game(player, current_player, game_people_list):
         expected = ''.join(pattern).lower()
 
         if current_player == player:
-            user_input = input(f"{current_player.get_name()}님 차례!! 정확한 박자에 딸기를 입력해주세요 (예: 1번 - X X X 딸기): ").replace(" ", "").lower()
+            user_input = input(f"{current_player.get_name()}님 차례: ").replace(" ", "").lower()
         else:
             is_correct = random.random() < 0.9
             if is_correct:
@@ -53,28 +54,20 @@ def strawberry_game(player, current_player, game_people_list):
                 else:
                     wrong_input[0] = "딸기"
                 user_input = ''.join(wrong_input)
-                print(f"{current_player.get_name()}님 차례: {user_input}")
                 time.sleep(1)
 
         if user_input != expected:
-            print("X 틀렸습니다! 정답은: ", end="")
+            if current_player != player: print(f"{current_player.get_name()}님이 {user_input.upper()}로 틀렸습니다!")
+            else: print("X 틀렸습니다 ㅠㅠ. 정답은: ", end="")
             print_rhythm(pattern)
-            print(f"{current_player.get_name()} 님은 하나 더 마신다!")
+            print(f"{current_player.get_name()} 님이 마신다~~!\n")
             current_player.set_count(current_player.get_count() + 1)
             current_player.life -= 1
-
-            # 재시작 여부 확인
-            cont = input("딸기 게임을 처음부터 다시 할까요? (y/n): ").strip().lower()
-            if cont == "y":
-                print("\n게임을 처음부터 다시 시작합니다!\n")
-                pattern_count = 0
-                player_index = game_people_list.index(current_player) + 1  # 틀린 다음 사람부터 시작
-                continue
-            else:
-                print("🍺 딸기 게임 종료!")
-                break
+            break
         else:
-            print(f"{current_player.get_name()} 정답!\n")
+            print(f"{current_player.get_name()} 정답!")
+        
+        print(f"{current_player.get_name()}은 (는) 지금까지 {current_player.get_count()}🍺 : 치사량까지 {current_player.get_life()}")            
 
         pattern_count += 1
         player_index += 1

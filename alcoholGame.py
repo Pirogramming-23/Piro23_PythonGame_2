@@ -114,6 +114,7 @@ def play_setting():
 
             for person in game_people_list:
                 print(f"- {person}")
+            print()
             return game_people_list
 
         except Exception as e:
@@ -129,6 +130,7 @@ def play_game(player, game_people_list):
             print(
                 f"{person.get_name()}은 (는) 지금까지 {person.get_count()}🍺 : 치사량까지 {person.get_life()}"
             )
+        print()
 
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~~🍺 오늘의 Alcohol Game 🍺~~~~~~~~~~~~~~~~~~~")
@@ -139,13 +141,6 @@ def play_game(player, game_people_list):
         print("                 🍺 5. 훈민정음 게임 ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-        user_input = input(
-            f"\n술게임 진행 중! {current_player.get_name()}님의 턴입니다.\n그만하고 싶으면 'exit'을, 계속하려면 Enter를 눌러주세요: "
-        )
-        if user_input.strip().lower() == "exit":
-            print("🍺 게임을 종료합니다. 🍺")
-            break
-
         if current_player.get_count() >= current_player.get_life():
             print("GAME OVER!")
             print(
@@ -154,6 +149,15 @@ def play_game(player, game_people_list):
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print("                 🍺 다음에 술마시면 또 불러주세요~안녕! 🍺")
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            break
+
+
+        user_input = input(
+            f"\n술게임 진행 중! {current_player.get_name()}님의 턴입니다.\n그만하고 싶으면 'exit'을, 계속하려면 Enter를 눌러주세요: "
+        )
+        print()
+        if user_input.strip().lower() == "exit":
+            print("🍺 게임을 종료합니다. 🍺")
             break
 
         try:

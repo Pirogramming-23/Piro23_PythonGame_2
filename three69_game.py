@@ -21,6 +21,7 @@ def three69_pattern():
 def game_369(player, current_player, game_people_list):
     print(f"3 6 9 게임을 시작합니다!!")
     print("3 6 9!! 3 6 9!! 3 6 9!! 3 6 9!! \n")
+    print("1부터 숫자를 하나씩 대면서, 3, 6, 9가 들어가는 숫자는 숫자 대신 '짝'을 쳐야 한다")
 
     patterns = three69_pattern()
     player_index = game_people_list.index(current_player)
@@ -45,22 +46,14 @@ def game_369(player, current_player, game_people_list):
         # 정답 체크
         if user_input != correct_answer:
             print(f"X 틀렸습니다 ㅠㅠ. 정답은: {correct_answer}")
-            print(f"{current_player.get_name()} 님은 하나 더 마신다!\n")
+            print(f"{current_player.get_name()} 님이 마신다!~~!!\n")
             current_player.set_count(current_player.get_count() + 1)
             current_player.life -= 1
-
-            # 게임 계속할지 묻기
-            cont = input("3 6 9 게임을 다시 처음부터 진행할까요? (y/n): ").strip().lower()
-            if cont == "y":
-                print("\n게임을 처음부터 다시 시작합니다!\n")
-                current_num = 1
-                player_index = game_people_list.index(current_player) + 1  # 틀린 다음 사람부터 시작
-                continue
-            else:
-                print("🍺 3 6 9 게임 종료!")
-                break
+            break
         else:
-            print(f"{current_player.get_name()} 정답!\n")
+            print(f"{current_player.get_name()} 정답!")
+
+        print(f"{current_player.get_name()}은 (는) 지금까지 {current_player.get_count()}🍺 : 치사량까지 {current_player.get_life()}")            
 
         current_num += 1
         player_index += 1
