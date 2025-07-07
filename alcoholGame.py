@@ -138,8 +138,8 @@ def play_game(player, game_people_list):
         print("                 🍺 4. 시장 게임 ")
         print("                 🍺 5. 훈민정음 게임 ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        
-        if current_player.get_life()-current_player.get_count() == 0:
+
+        if current_player.get_life() == 0:
             print("GAME OVER!")
             print(
                 f"{current_player.get_name()}이 (가) 전사했습니다...꿈나라에서는 편히 쉬시길...zzz"
@@ -160,10 +160,9 @@ def play_game(player, game_people_list):
                 case "2":
                     subway_game(game_people_list)
                 case "3":
-                    strawberry_game(current_player,game_people_list)
-                    break
+                    strawberry_game(player,current_player,game_people_list)
                 case "4":
-                    market_game(player, game_people_list)
+                    market_game(player,game_people_list)
                 case "5":
                     korean_game(player, game_people_list) #tofu_game에서 korean_game으로 수정. 함수 파라미터 추가
                 case _:
