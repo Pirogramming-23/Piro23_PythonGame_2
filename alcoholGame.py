@@ -169,7 +169,6 @@ def play_game(player, game_people_list):
                     game_369(player,current_player,game_people_list)
                 case "2":
                     subway_game(game_people_list)
-                    break
                 case "3":
                     strawberry_game(player,current_player,game_people_list)
                 case "4":
