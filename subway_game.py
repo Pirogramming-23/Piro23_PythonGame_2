@@ -29,15 +29,23 @@ def subway_game(game_people_list):
         if elapsed_time > 10:
             print(f"⏰ 시간 초과! {name}님은 벌주 한 잔! 🍻")
             current_player.set_count(current_player.get_count() + 1)
+            current_player.life -= 1
+            break
         elif station == "":
             print(f"❌ 입력 없음! 벌주! 🍻")
             current_player.set_count(current_player.get_count() + 1)
+            current_player.life -= 1
+            break
         elif station not in station_list:
             print(f"❌ {station}는 2호선 역이 아닙니다! 벌주! 🍻")
             current_player.set_count(current_player.get_count() + 1)
+            current_player.life -= 1
+            break
         elif station in used_stations:
             print(f"❌ {station}은(는) 이미 나왔습니다! 벌주! 🍻")
             current_player.set_count(current_player.get_count() + 1)
+            current_player.life -= 1
+            break
         else:
             print(f"✅ {station} 통과!")
             used_stations.add(station)
@@ -50,7 +58,3 @@ def subway_game(game_people_list):
             break
 
         turn += 1 #지하철 게임 끝//
-
-
-
-
