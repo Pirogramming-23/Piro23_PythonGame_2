@@ -53,8 +53,4 @@ def subway_game(game_people_list):
         # 현재 플레이어의 상태 출력
         print(f"🍺 {name}님의 현재 잔 수: {current_player.get_count()} / {current_player.get_life()}")
 
-        if current_player.get_count() >= current_player.get_life():
-            print(f"\n💀 {name}님은 전사하셨습니다... 꿈나라에서 편히 쉬세요.")
-            break
-
         turn += 1 #지하철 게임 끝//
