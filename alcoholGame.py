@@ -51,7 +51,7 @@ def init_setting():
     print("~~~~~~~~~~~~~~~~~~~~~마시면서 배우는 술게임~ 마시면서 배우는 술게임~ 안주 먹을 시간이 없써요~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     print(r"☆*: .｡. o(≧▽≦)o .｡.:*☆" + "  안주 먹을 🍗 시간이 ❌ 없어요 ❌ 마시면서 배우는 술게임🏠🍺" + "☆*: .｡. o(≧▽≦)o .｡.:*☆")
     print("~" * 120 + "\n")
-
+    
     try:
         player_name = input("오늘 거하게 취해볼 당신의 이름은? : ")
 
@@ -114,7 +114,6 @@ def play_setting():
 
             for person in game_people_list:
                 print(f"- {person}")
-            print()
             return game_people_list
 
         except Exception as e:
@@ -130,7 +129,6 @@ def play_game(player, game_people_list):
             print(
                 f"{person.get_name()}은 (는) 지금까지 {person.get_count()}🍺 : 치사량까지 {person.get_life()}"
             )
-        print()
 
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~~🍺 오늘의 Alcohol Game 🍺~~~~~~~~~~~~~~~~~~~")
@@ -140,6 +138,13 @@ def play_game(player, game_people_list):
         print("                 🍺 4. 시장 게임 ")
         print("                 🍺 5. 훈민정음 게임 ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+        user_input = input(
+            f"\n술게임 진행 중! {current_player.get_name()}님의 턴입니다.\n그만하고 싶으면 'exit'을, 계속하려면 Enter를 눌러주세요: "
+        )
+        if user_input.strip().lower() == "exit":
+            print("🍺 게임을 종료합니다. 🍺")
+            break
 
         if current_player.get_count() >= current_player.get_life():
             print("GAME OVER!")
@@ -151,27 +156,20 @@ def play_game(player, game_people_list):
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             break
 
-
-        user_input = input(
-            f"\n술게임 진행 중! {current_player.get_name()}님의 턴입니다.\n그만하고 싶으면 'exit'을, 계속하려면 Enter를 눌러주세요: "
-        )
-        print()
-        if user_input.strip().lower() == "exit":
-            print("🍺 게임을 종료합니다. 🍺")
-            break
-
         try:
             choice = input(
                 f"{current_player.get_name()}님이 선택할 게임 번호는? (1~5): "
             ).strip()
             match choice:
                 case "1":
-                    game_369(player,current_player,game_people_list)
+                    game_369(current_player,game_people_list)
+                    break
                 case "2":
                     subway_game(game_people_list)
                     break
                 case "3":
-                    strawberry_game(player,current_player,game_people_list)
+                    strawberry_game(current_player,game_people_list)
+                    break
                 case "4":
                     market_game(game_people_list)
                     break
