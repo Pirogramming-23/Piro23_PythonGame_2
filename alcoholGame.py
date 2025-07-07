@@ -176,7 +176,6 @@ def play_game(player, game_people_list):
                     break
                 case "5":
                     korean_game(player, game_people_list) #tofu_game에서 korean_game으로 수정. 함수 파라미터 추가
-                    break
                 case _:
                     print("올바른 게임 번호를 골라주세요!")
         except Exception as e:
