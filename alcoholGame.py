@@ -139,14 +139,22 @@ def play_game(player, game_people_list):
         print("                 🍺 5. 훈민정음 게임 ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-        if current_player.get_life() == 0:
+        if current_player.get_count() >= current_player.get_life():
             print("GAME OVER!")
             print(
                 f"{current_player.get_name()}이 (가) 전사했습니다...꿈나라에서는 편히 쉬시길...zzz"
-                )
+            )
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print("                 🍺 다음에 술마시면 또 불러주세요~안녕! 🍺")
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            break
+        
+        user_input = input(
+            f"\n술게임 진행 중! {current_player.get_name()}님의 턴입니다.\n그만하고 싶으면 'exit'을, 계속하려면 Enter를 눌러주세요: "
+        )
+        print()
+        if user_input.strip().lower() == "exit":
+            print("🍺 게임을 종료합니다. 🍺")
             break
 
         try:
@@ -156,7 +164,6 @@ def play_game(player, game_people_list):
             match choice:
                 case "1":
                     game_369(current_player,game_people_list)
-                    break
                 case "2":
                     subway_game(game_people_list)
                 case "3":
