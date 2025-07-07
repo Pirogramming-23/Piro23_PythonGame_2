@@ -141,7 +141,7 @@ def play_game(player, game_people_list):
         print("                 🍺 5. 훈민정음 게임 ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-        if current_player.get_count() >= current_player.get_life():
+        if current_player.get_life()-current_player.get_count() == 0:
             print("GAME OVER!")
             print(
                 f"{current_player.get_name()}이 (가) 전사했습니다...꿈나라에서는 편히 쉬시길...zzz"

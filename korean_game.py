@@ -46,19 +46,19 @@ def korean_game(player, game_people_list):
         if p == player:  # 플레이어 차례
             user_word = input(f"{p.get_name()}님의 답변은? (패스하려면 Enter): ").strip()
             if user_word == "":
-                time.sleep(1)
                 print(f"{p.get_name()}님 패스! 벌칙 1잔~ 🍺")
                 p.set_count(p.get_count() + 1)
                 p.life -= 1
-            elif get_chosung(user_word) == chosung and user_word not in used_words:
                 time.sleep(1)
+            elif get_chosung(user_word) == chosung and user_word not in used_words:
                 print(f"{p.get_name()} 정답!")
                 used_words.add(user_word)
+                time.sleep(1)
             else:
                 print(f"{p.get_name()} 오답! 벌칙 1잔~ 🍺")
-                time.sleep(1)
                 p.set_count(p.get_count() + 1)
                 p.life -= 1
+                time.sleep(1)
                 
         else:  # AI 플레이어 차례
             possible_words = [w for w in word_list if get_chosung(w) == chosung and w not in used_words]
